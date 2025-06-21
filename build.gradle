@@ -5,6 +5,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id 'org.jetbrains.kotlin.jvm' version '1.6.21'
 	id 'org.jetbrains.kotlin.plugin.spring' version '1.6.21'
+	id 'org.jetbrains.kotlin.plugin.jpa' version '1.6.21'
 }
 
 group = 'com.noom.interview.fullstack'
@@ -26,6 +27,8 @@ dependencies {
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation "jakarta.persistence:jakarta.persistence-api:3.1.0"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21"
 }
 
 tasks.withType(KotlinCompile).configureEach {
