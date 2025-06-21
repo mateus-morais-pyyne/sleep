@@ -1,0 +1,33 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+## Exclude all .class files
+*.class
+
+# Build files
+target/
+build/
+
+# Logs
+logs/
+*.log
+*.tld
+hs_err_pid*
+
+# Maven
+.mvn/
+!**/src/main/**/META-INF/**/persistence.xml
+.settings/
+
+# Dependency directories
+**/node_modules/
+
+# Temporary Files
+*.*~
+*.swp
+.swm
+*.bak
+
+/.gradle
