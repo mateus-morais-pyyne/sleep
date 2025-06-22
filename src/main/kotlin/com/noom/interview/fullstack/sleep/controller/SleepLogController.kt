@@ -10,7 +10,7 @@ import org.springframework.web.client.HttpClientErrorException
 import java.util.*
 
 @RestController
-@RequestMapping("/api/users/{userId}/sleep-logs")
+@RequestMapping("/api/sleep-logs/{userId}")
 class SleepLogController(
     private val sleepLogService: SleepLogService
 ) {

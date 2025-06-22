@@ -78,7 +78,7 @@ class SleepLogControllerTest {
 
         // Act & Assert
         mockMvc.perform(
-            post("/api/users/$userId/sleep-logs")
+            post("/api/sleep-logs/$userId")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(createSleepLogDTO))
         )
@@ -116,7 +116,7 @@ class SleepLogControllerTest {
 
         // Act & Assert
         mockMvc.perform(
-            get("/api/users/$userId/sleep-logs/$sleepLogId")
+            get("/api/sleep-logs/$userId/$sleepLogId")
                 .accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isOk)
@@ -139,7 +139,7 @@ class SleepLogControllerTest {
 
         // Act & Assert
         mockMvc.perform(
-            get("/api/users/$userId/sleep-logs/$sleepLogId")
+            get("/api/sleep-logs/$userId/$sleepLogId")
                 .accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isNotFound)
@@ -169,7 +169,7 @@ class SleepLogControllerTest {
 
         // Act & Assert
         mockMvc.perform(
-            get("/api/users/$userId/sleep-logs/latest")
+            get("/api/sleep-logs/$userId/latest")
                 .accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isOk)
@@ -192,7 +192,7 @@ class SleepLogControllerTest {
 
         // Act & Assert
         mockMvc.perform(
-            get("/api/users/$userId/sleep-logs/latest")
+            get("/api/sleep-logs/$userId/latest")
                 .accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isNotFound)
@@ -227,7 +227,7 @@ class SleepLogControllerTest {
 
         // Act & Assert
         mockMvc.perform(
-            get("/api/users/$userId/sleep-logs/statistics/last-30-days")
+            get("/api/sleep-logs/$userId/statistics/last-30-days")
                 .accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isOk)
@@ -269,7 +269,7 @@ class SleepLogControllerTest {
 
         // Act & Assert
         mockMvc.perform(
-            get("/api/users/$userId/sleep-logs/statistics/last-30-days")
+            get("/api/sleep-logs/$userId/statistics/last-30-days")
                 .accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isOk)

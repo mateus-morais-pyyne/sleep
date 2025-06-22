@@ -28,4 +28,11 @@ class UserController(
         val user = userService.findById(id)
         return UserDTO(user)
     }
+
+    @GetMapping("/list")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    fun getUserById(): List<UserDTO>{
+        val user = userService.list()
+        return user.map{user -> UserDTO(user)}}
 }

@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.0]
+
+### Added
+- Endpoint for listing users for testing
+- Docker compose file
+- Readme file
+- Postman collection file
+
+### Fixed
+- Changed routes for sleep log api
+- Fixed bug on SleepLogRepository
+
 ## [0.5.0]
 
 ### Added
