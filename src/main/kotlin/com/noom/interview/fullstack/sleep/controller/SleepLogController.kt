@@ -1,6 +1,7 @@
 package com.noom.interview.fullstack.sleep.controller
 
 import com.noom.interview.fullstack.sleep.model.dto.CreateSleepLogDTO
+import com.noom.interview.fullstack.sleep.model.dto.SleepLogAverageDTO
 import com.noom.interview.fullstack.sleep.model.dto.SleepLogDTO
 import com.noom.interview.fullstack.sleep.service.SleepLogService
 import org.springframework.http.HttpStatus
@@ -49,5 +50,14 @@ class SleepLogController(
     ): SleepLogDTO {
         val latestSleepLog = sleepLogService.findLatestByUserId(userId)
         return SleepLogDTO(latestSleepLog)
+    }
+
+    @GetMapping("/statistics/last-30-days")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    fun getLast30DaysStatistics(
+        @PathVariable userId: UUID
+    ): SleepLogAverageDTO {
+        return sleepLogService.getLast30DayAverages(userId)
     }
 }
