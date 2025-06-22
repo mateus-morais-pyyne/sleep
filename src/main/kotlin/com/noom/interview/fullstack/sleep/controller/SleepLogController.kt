@@ -40,4 +40,14 @@ class SleepLogController(
         
         return SleepLogDTO(sleepLog)
     }
+
+    @GetMapping("/latest")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    fun getLatestSleepLog(
+        @PathVariable userId: UUID
+    ): SleepLogDTO {
+        val latestSleepLog = sleepLogService.findLatestByUserId(userId)
+        return SleepLogDTO(latestSleepLog)
+    }
 }

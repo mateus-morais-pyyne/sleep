@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito.*
+import org.springframework.http.HttpStatus
 import org.springframework.web.server.ResponseStatusException
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -95,5 +96,57 @@ class SleepLogServiceTest {
             sleepLogService.findById(sleepLogId)
         }
         assertEquals("404 NOT_FOUND \"Sleep log not found with id: $sleepLogId\"", ex.message)
+    }
+
+    @Test
+    fun `findLatestByUserId should return latest sleep log when exists`() {
+        // Arrange
+        val userId = UUID.randomUUID()
+        val sleepLogId = UUID.randomUUID()
+        val bedTime = LocalDateTime.of(2025, 6, 21, 22, 0, 0)
+        val wakeUpTime = LocalDateTime.of(2025, 6, 22, 6, 0, 0)
+
+        val user = User(
+            id = userId,
+            name = "John",
+            age = 21,
+            email = "john.doe@example.com"
+        )
+
+        val latestSleepLog = SleepLog(
+            id = sleepLogId,
+            dateOfSleep = bedTime.toLocalDate(),
+            bedTime = bedTime,
+            wakeUpTime = wakeUpTime,
+            totalTimeInBed = 480,
+            morningFeeling = MorningFeeling.OK,
+            user = user
+        )
+
+        `when`(sleepLogRepository.findLatestByUserId(userId)).thenReturn(latestSleepLog)
+
+        // Act
+        val result = sleepLogService.findLatestByUserId(userId)
+
+        // Assert
+        assertNotNull(result)
+        assertEquals(latestSleepLog, result)
+        verify(sleepLogRepository).findLatestByUserId(userId)
+    }
+
+    @Test
+    fun `findLatestByUserId should throw ResponseStatusException when no sleep logs found`() {
+        // Arrange
+        val userId = UUID.randomUUID()
+        `when`(sleepLogRepository.findLatestByUserId(userId)).thenReturn(null)
+
+        // Act & Assert
+        val exception = assertThrows<ResponseStatusException> {
+            sleepLogService.findLatestByUserId(userId)
+        }
+
+        assertEquals(HttpStatus.NOT_FOUND, exception.status)
+        assertEquals("No sleep logs found for user with id: $userId", exception.reason)
+        verify(sleepLogRepository).findLatestByUserId(userId)
     }
 }

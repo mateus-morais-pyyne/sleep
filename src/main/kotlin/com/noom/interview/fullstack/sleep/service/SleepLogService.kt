@@ -43,4 +43,13 @@ class SleepLogService(
                 "Sleep log not found with id: $id"
             )
     }
+
+    @Transactional(readOnly = true)
+    fun findLatestByUserId(userId: UUID): SleepLog {
+        return sleepLogRepository.findLatestByUserId(userId)
+            ?: throw ResponseStatusException(
+                HttpStatus.NOT_FOUND,
+                "No sleep logs found for user with id: $userId"
+            )
+    }
 }
