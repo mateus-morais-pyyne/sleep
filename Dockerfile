@@ -11,4 +11,4 @@ COPY src/ src
 
 RUN ./gradlew build
 
-ENTRYPOINT ["java","-jar","build/libs/sleep-0.0.3-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","build/libs/sleep-1.0.0-SNAPSHOT.jar"]

@@ -1,0 +1,521 @@
+{
+	"info": {
+		"_postman_id": "d90118b1-7477-48bc-937d-515524f7b7e5",
+		"name": "Sleep Service API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17624997"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"userId\", pm.response.json().id);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"age\": 17\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"age\": 17\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Jun 2025 18:53:18 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"273b1666-3739-44fc-95e5-825e1b0f5c79\",\n    \"name\": \"John Doe\",\n    \"age\": 17,\n    \"email\": \"john@example.com\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "273b1666-3739-44fc-95e5-825e1b0f5c79"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/users/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "273b1666-3739-44fc-95e5-825e1b0f5c79"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Jun 2025 19:11:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"273b1666-3739-44fc-95e5-825e1b0f5c79\",\n    \"name\": \"John Doe\",\n    \"age\": 17,\n    \"email\": \"john@example.com\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List Users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"list"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/users/list",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Jun 2025 19:10:20 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"273b1666-3739-44fc-95e5-825e1b0f5c79\",\n        \"name\": \"John Doe\",\n        \"age\": 17,\n        \"email\": \"john@example.com\"\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sleep Logs",
+			"item": [
+				{
+					"name": "Create Sleep Log",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateOfSleep\": \"2025-06-19\",\n    \"bedTime\": \"2025-06-19T22:10:00Z\",\n    \"wakeUpTime\": \"2025-06-20T06:00:00Z\",\n    \"morningFeeling\":\"BAD\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/sleep-logs/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"sleep-logs",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "273b1666-3739-44fc-95e5-825e1b0f5c79"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Sleep Log",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"dateOfSleep\": \"2025-06-19\",\n    \"bedTime\": \"2025-06-19T22:10:00Z\",\n    \"wakeUpTime\": \"2025-06-20T06:00:00Z\",\n    \"morningFeeling\":\"BAD\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/sleep-logs/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"sleep-logs",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "273b1666-3739-44fc-95e5-825e1b0f5c79"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Jun 2025 19:24:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"3972c663-6309-4c8d-9efe-287eb30568d2\",\n    \"userId\": \"273b1666-3739-44fc-95e5-825e1b0f5c79\",\n    \"dateOfSleep\": \"2025-06-19\",\n    \"bedTime\": \"2025-06-19T22:10:00\",\n    \"wakeUpTime\": \"2025-06-20T06:00:00\",\n    \"totalTimeInBed\": 470,\n    \"morningFeeling\": \"BAD\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get latest sleep log",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/sleep-logs/:userId/latest",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"sleep-logs",
+								":userId",
+								"latest"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "273b1666-3739-44fc-95e5-825e1b0f5c79"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get latest sleep log",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/sleep-logs/:userId/latest",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"sleep-logs",
+										":userId",
+										"latest"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "273b1666-3739-44fc-95e5-825e1b0f5c79"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Jun 2025 19:25:42 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"3b6c218c-5543-4fdd-97a8-90e2a7aca90a\",\n    \"userId\": \"273b1666-3739-44fc-95e5-825e1b0f5c79\",\n    \"dateOfSleep\": \"2025-06-22\",\n    \"bedTime\": \"2025-06-22T22:00:00\",\n    \"wakeUpTime\": \"2025-06-23T06:00:00\",\n    \"totalTimeInBed\": 480,\n    \"morningFeeling\": \"OK\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Sleep Log Average",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/sleep-logs/:userId/statistics/last-30-days",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"sleep-logs",
+								":userId",
+								"statistics",
+								"last-30-days"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "273b1666-3739-44fc-95e5-825e1b0f5c79"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Sleep Log Average",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/sleep-logs/:userId/statistics/last-30-days",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"sleep-logs",
+										":userId",
+										"statistics",
+										"last-30-days"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "273b1666-3739-44fc-95e5-825e1b0f5c79"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Jun 2025 19:25:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"startDate\": \"2025-05-24\",\n    \"endDate\": \"2025-06-22\",\n    \"averageTotalTimeInBed\": 536,\n    \"averageBedTime\": \"21:52:00\",\n    \"averageWakeUpTime\": \"06:48:00\",\n    \"morningFeelingFrequencies\": {\n        \"BAD\": 2,\n        \"OK\": 3,\n        \"GOOD\": 0\n    },\n    \"totalDays\": 30,\n    \"daysWithLogs\": 5\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

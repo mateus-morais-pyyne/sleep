@@ -35,4 +35,9 @@ class UserService(
         return userRepository.findByIdOrNull(id)
             ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: $id")
     }
+
+    @Transactional(readOnly = true)
+    fun list(): List<User> {
+        return userRepository.findAll()
+    }
 }

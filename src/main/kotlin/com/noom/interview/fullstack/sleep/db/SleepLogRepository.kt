@@ -8,7 +8,7 @@ import java.time.LocalDate
 import java.util.*
 
 interface SleepLogRepository : JpaRepository<SleepLog, UUID> {
-    @Query("SELECT s FROM SleepLog s WHERE s.user.id = :userId ORDER BY s.dateOfSleep DESC LIMIT 1")
+    @Query("SELECT * FROM tb_sleep_logs s WHERE s.user_id = :userId ORDER BY s.date_of_sleep DESC LIMIT 1", nativeQuery = true)
     fun findLatestByUserId(@Param("userId") userId: UUID): SleepLog?
 
     @Query("SELECT s FROM SleepLog s WHERE s.user.id = :userId AND s.dateOfSleep BETWEEN :startDate AND :endDate")
