@@ -140,4 +140,57 @@ class SleepLogControllerTest {
         )
             .andExpect(status().isNotFound)
     }
+
+    @Test
+    fun `getLatestSleepLog should return OK status and latest sleep log when available`() {
+        // Arrange
+        val userId = UUID.randomUUID()
+        val sleepLogId = UUID.randomUUID()
+
+        val bedTime = LocalDateTime.of(2025, 6, 21, 22, 0, 0)
+        val wakeUpTime = LocalDateTime.of(2025, 6, 22, 6, 0, 0)
+
+        val user = User(userId, "John", 21, "email@email.com")
+        val latestSleepLog = SleepLog(
+            id = sleepLogId,
+            dateOfSleep = bedTime.toLocalDate(),
+            bedTime = bedTime,
+            wakeUpTime = wakeUpTime,
+            totalTimeInBed = 480,
+            morningFeeling = MorningFeeling.OK,
+            user = user
+        )
+
+        whenever(sleepLogService.findLatestByUserId(userId)).thenReturn(latestSleepLog)
+
+        // Act & Assert
+        mockMvc.perform(
+            get("/api/users/$userId/sleep-logs/latest")
+                .accept(MediaType.APPLICATION_JSON)
+        )
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.id", equalTo(latestSleepLog.id.toString())))
+            .andExpect(jsonPath("$.bedTime", equalTo(latestSleepLog.bedTime.format(formatter))))
+            .andExpect(jsonPath("$.wakeUpTime", equalTo(latestSleepLog.wakeUpTime.format(formatter))))
+            .andExpect(jsonPath("$.dateOfSleep", equalTo(latestSleepLog.dateOfSleep.toString())))
+            .andExpect(jsonPath("$.totalTimeInBed", equalTo(latestSleepLog.totalTimeInBed)))
+            .andExpect(jsonPath("$.morningFeeling", equalTo(latestSleepLog.morningFeeling.name)))
+            .andExpect(jsonPath("$.userId", equalTo(latestSleepLog.user.id.toString())))
+    }
+
+    @Test
+    fun `getLatestSleepLog should return NOT_FOUND status when no sleep logs exist for user`() {
+        // Arrange
+        val userId = UUID.randomUUID()
+
+        whenever(sleepLogService.findLatestByUserId(userId))
+            .thenThrow(ResponseStatusException(HttpStatus.NOT_FOUND))
+
+        // Act & Assert
+        mockMvc.perform(
+            get("/api/users/$userId/sleep-logs/latest")
+                .accept(MediaType.APPLICATION_JSON)
+        )
+            .andExpect(status().isNotFound)
+    }
 }
