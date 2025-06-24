@@ -1,6 +1,6 @@
 # Sleep Service Application
 
-The Sleep Service Application is a robust Jakarta EE-based project designed to provide a RESTful API for managing and tracking sleep data. Built with Spring Data JPA, Spring MVC, Java 11, and Kotlin 1.6, the application is container-ready and leverages best practices for modern backend development. This project can be find at: github.com/mateus-morais-pyyne/sleep
+The Sleep Service Application is a robust Jakarta EE-based project designed to provide a RESTful API for managing and tracking sleep data. Built with Spring Data JPA, Spring MVC, Java 11, and Kotlin 1.6, the application is container-ready and leverages best practices for modern backend development. This project can be find at: [Github](github.com/mateus-morais-pyyne/sleep)
 
 ## Features
 
